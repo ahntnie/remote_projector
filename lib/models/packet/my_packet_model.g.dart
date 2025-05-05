@@ -1,0 +1,81 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'my_packet_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+MyPacketModel _$MyPacketModelFromJson(Map<String, dynamic> json) =>
+    MyPacketModel(
+      dayQty: json['day_qty'] as String?,
+      monthQty: json['month_qty'] as String?,
+      yearQty: json['year_qty'] as String?,
+      isTrial: json['is_trial'] as String?,
+      paidId: json['paid_id'] as String?,
+      packetCode: json['packet_code'] as String?,
+      regNumber: json['reg_number'] as String?,
+      namePacket: json['name_packet'] as String?,
+      price: json['price'] as String?,
+      price6Month: json['price_6_month'] as String?,
+      price12Month: json['price_12_month'] as String?,
+      isBusiness: json['is_business'] as String?,
+      expireDate: json['expire_date'] as String?,
+      picture: json['picture'] as String?,
+      description: json['description'] as String?,
+      detail: json['detail'] as String?,
+      customerId: json['customer_id'] as String?,
+      pay: json['pay'] as String?,
+      createdDate: json['created_date'] as String?,
+      createdBy: json['created_by'] as String?,
+      lastMDFBy: json['last_MDF_by'] as String?,
+      lastMDFDate: json['last_MDF_date'] as String?,
+      deleted: json['deleted'] as String?,
+      registerDate: json['register_date'] as String?,
+      paymentDate: json['payment_date'] as String?,
+      validDate: json['valid_date'] as String?,
+      typePay: json['type_pay'] as String?,
+      packetId: json['packet_id'] as String?,
+      type: json['type'] as String?,
+      limitCapacity: json['limit_capacity'] as String?,
+      limitQty: json['limit_qty'] as String?,
+      paymentDueDate: json['payment_due_date'] as String?,
+      payMonth: json['pay_month'] as String?,
+    );
+
+Map<String, dynamic> _$MyPacketModelToJson(MyPacketModel instance) =>
+    <String, dynamic>{
+      'paid_id': instance.paidId,
+      'packet_code': instance.packetCode,
+      'reg_number': instance.regNumber,
+      'name_packet': instance.namePacket,
+      'price': instance.price,
+      'expire_date': instance.expireDate,
+      'day_qty': instance.dayQty,
+      'month_qty': instance.monthQty,
+      'year_qty': instance.yearQty,
+      'is_trial': instance.isTrial,
+      'picture': instance.picture,
+      'description': instance.description,
+      'detail': instance.detail,
+      'customer_id': instance.customerId,
+      'pay': instance.pay,
+      'created_date': instance.createdDate,
+      'created_by': instance.createdBy,
+      'last_MDF_by': instance.lastMDFBy,
+      'last_MDF_date': instance.lastMDFDate,
+      'deleted': instance.deleted,
+      'register_date': instance.registerDate,
+      'payment_date': instance.paymentDate,
+      'valid_date': instance.validDate,
+      'type_pay': instance.typePay,
+      'packet_id': instance.packetId,
+      'type': instance.type,
+      'limit_capacity': instance.limitCapacity,
+      'limit_qty': instance.limitQty,
+      'payment_due_date': instance.paymentDueDate,
+      'price_6_month': instance.price6Month,
+      'price_12_month': instance.price12Month,
+      'is_business': instance.isBusiness,
+      'pay_month': instance.payMonth,
+    };
