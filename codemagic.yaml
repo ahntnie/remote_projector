@@ -1,5 +1,48 @@
 workflows:
-    sample-workflow:
-        name: Codemagic Sample Workflow
-        max_build_duration: 120
-        instance_type: mac_mini_m2
+  ios-release:
+    name: iOS Flutter Release
+    environment:
+      groups:
+        - app_store_credentials
+        - certificate_credentials
+      vars:
+        BUNDLE_ID: "com.example.remoteProjector2024.RunnerTests"
+        XCODE_SCHEME: "Runner"
+        XCODE_WORKSPACE: "ios/Runner.xcworkspace"
+      flutter: 3.22.2
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Restore GoogleService-Info.plist
+        script: echo $GOOGLE_SERVICE_INFO_PLIST | base64 --decode > ios/Runner/GoogleService-Info.plist
+      - name: Install Pods
+        script: cd ios && pod install
+      - name: Initialize keychain
+        script: keychain initialize
+      - name: Add signing certificate
+        script: |
+          echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+          keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD
+      - name: Set up provisioning profile
+        script: |
+          PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$PROFILES_HOME"
+          PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
+          echo $CM_PROVISIONING_PROFILE | base64 --decode > "$PROFILE_PATH"
+          echo "Saved provisioning profile $PROFILE_PATH"
+      - name: Set up code signing settings
+        script: xcode-project use-profiles
+      - name: Build IPA
+        script: flutter build ios --release --no-codesign
+      - name: Package IPA
+        script: xcode-project build-ipa --workspace "$XCODE_WORKSPACE" --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
