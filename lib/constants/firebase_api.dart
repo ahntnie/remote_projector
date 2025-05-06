@@ -61,9 +61,9 @@ class FirebaseApi {
       sound: true,
     );
 
-    // token = await firebaseMessaging.getToken();
-    // AppSP.set(AppSPKey.customer_token, token);
-    // print('FCM Token: $token');
+    token = await firebaseMessaging.getToken();
+    AppSP.set(AppSPKey.fcm_token, token);
+    print('FCM Token: $token');
 
     // Đăng ký topic
     await firebaseMessaging.subscribeToTopic(FCM_TOPIC_ALL);

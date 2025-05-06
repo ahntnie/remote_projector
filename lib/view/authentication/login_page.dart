@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:remote_projector_2024/app/app_sp.dart';
+import 'package:remote_projector_2024/app/app_sp_key.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -81,6 +83,7 @@ class LoginPage extends StackedView<LoginViewModel> with $LoginPage {
                     textSize: 27,
                     margin: const EdgeInsets.only(top: 16, left: 40, right: 40),
                   ),
+                  Text(AppSP.get(AppSPKey.fcm_token))
                 ],
               ),
             ),
