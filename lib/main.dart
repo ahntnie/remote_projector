@@ -126,7 +126,7 @@ class _MyAppState extends State<MyApp> {
       if (settings.authorizationStatus == AuthorizationStatus.authorized) {
         setState(
             () => _log += 'User granted permission, fetching FCM token...\n');
-        String? token = await messaging.getToken();
+        String? token = await messaging.getAPNSToken();
         setState(() => _log += 'FCM Token: $token\n');
       } else {
         setState(() => _log += 'User did not grant full permission\n');
