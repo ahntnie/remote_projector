@@ -31,8 +31,15 @@ Future<void> _showLocalNotification(
     icon: '@drawable/notification',
   );
 
+  const DarwinNotificationDetails darwinDetails = DarwinNotificationDetails(
+    presentAlert: true,
+    presentBadge: true,
+    presentSound: true,
+  );
+
   const NotificationDetails platformDetails = NotificationDetails(
     android: androidDetails,
+    iOS: darwinDetails,
   );
 
   final localNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -94,8 +101,16 @@ class FirebaseApi {
   Future<void> _initializeLocalNotifications() async {
     const AndroidInitializationSettings androidSettings =
         AndroidInitializationSettings('@drawable/ic_notification');
-    const InitializationSettings initSettings =
-        InitializationSettings(android: androidSettings);
+    const DarwinInitializationSettings darwinSettings =
+        DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+    );
+    const InitializationSettings initSettings = InitializationSettings(
+      android: androidSettings,
+      iOS: darwinSettings,
+    );
     await _localNotificationsPlugin.initialize(
       initSettings,
       onDidReceiveNotificationResponse: onNotificationTap,
