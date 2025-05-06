@@ -6,7 +6,7 @@ workflows:
         - app_store_credentials
         - certificate_credentials
       vars:
-        BUNDLE_ID: "com.example.remoteProjector2024.RunnerTests"
+        BUNDLE_ID: "com.example.remoteProjector2024"
         XCODE_SCHEME: "Runner"
         XCODE_WORKSPACE: "ios/Runner.xcworkspace"
       flutter: 3.22.2
