@@ -125,14 +125,27 @@ class _MyAppState extends State<MyApp> {
 
       if (settings.authorizationStatus == AuthorizationStatus.authorized) {
         setState(
-            () => _log += 'User granted permission, fetching FCM token...\n');
-        String? token = await messaging.getAPNSToken();
-        setState(() => _log += 'FCM Token: $token\n');
+            () => _log += 'User granted permission, fetching APNs token...\n');
+        String? apnsToken = await messaging.getAPNSToken();
+        setState(() => _log += 'APNs Token: $apnsToken\n');
+
+        if (apnsToken == null) {
+          setState(() =>
+              _log += 'APNs token is null, retrying after 2 seconds...\n');
+          await Future.delayed(Duration(seconds: 2));
+          apnsToken = await messaging.getAPNSToken();
+          setState(() => _log += 'APNs Token after retry: $apnsToken\n');
+        }
+
+        setState(() => _log += 'Fetching FCM token...\n');
+        String? fcmToken = await messaging.getToken();
+        setState(() => _log += 'FCM Token: $fcmToken\n');
       } else {
         setState(() => _log += 'User did not grant full permission\n');
       }
-    } catch (e) {
+    } catch (e, stackTrace) {
       setState(() => _log += 'Error: $e\n');
+      setState(() => _log += 'StackTrace: $stackTrace\n');
     }
   }
 
