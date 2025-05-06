@@ -9,8 +9,9 @@ workflows:
         BUNDLE_ID: "com.example.remoteProjector2024"
         XCODE_SCHEME: "Runner"
         XCODE_WORKSPACE: "ios/Runner.xcworkspace"
+        CM_DEBUG: "true" # Đảm bảo bật debug
       flutter: 3.22.2
-      xcode: latest
+      xcode: 15.4
       cocoapods: default
     scripts:
       - name: Get Flutter packages
