@@ -1,7 +1,7 @@
 import UIKit
 import Flutter
 import GoogleSignIn
-import FirebaseCore
+
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -9,7 +9,7 @@ import FirebaseCore
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    FirebaseApp.configure()
+
     GeneratedPluginRegistrant.register(with: self)
 
     // Cấu hình Google Sign-In với clientID
